@@ -22,14 +22,15 @@ RUN \
 		unzip \
 		wget \
 		which \
+		curl \
 		xz-devel \
 		zlib-devel &&\
 	yum clean all
 
 # Build grpc
-ENV GRPC_RELEASE_TAG v1.6.6
+ENV GRPC_RELEASE_TAG $(curl -L https://grpc.io/release)
 
-RUN git clone https://github.com/grpc/grpc.git /usr/local/src/grpc
+RUN git clone -b $(curl -L https://grpc.io/release)  https://github.com/grpc/grpc.git /usr/local/src/grpc
 RUN \
 	cd /usr/local/src/grpc &&\
 	git checkout tags/${GRPC_RELEASE_TAG} &&\
