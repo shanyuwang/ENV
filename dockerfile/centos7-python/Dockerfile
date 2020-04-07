@@ -1,13 +1,11 @@
 ################# stage 1:build ###########
-#docker build -t sammywang/python-devel:ubuntu .
-FROM sammywang/ubuntu-devel:latest AS builder
+#docker build -t sammywang/python-devel:centos7 .
+FROM sammywang/centos7-devel:latest AS builder
 
-# prepare env
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# install deps
+RUN yum -y update && yum -y install -y\
         graphviz \
-    && apt-get clean -y \
-    && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/*
+	&& yum clean all
 
 #install python deps
 RUN python3 -m pip --no-cache-dir install --upgrade \
