@@ -4,9 +4,9 @@ FROM sammywang/centos7-devel:latest AS builder
 
 ######################
 # Build grpc
-#ENV BRPC_RELEASE_TAG 0.9.6
-#ENV BRPC_RELEASE_TAG 0.9.7-rc03
-ENV BRPC_RELEASE_TAG master
+#ENV BRPC_RELEASE_TAG="0.9.6"
+#ENV BRPC_RELEASE_TAG="0.9.7-rc03"
+ENV BRPC_RELEASE_TAG="master"
 
 WORKDIR /root
 

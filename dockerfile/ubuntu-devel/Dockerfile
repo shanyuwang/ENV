@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         zip \
         wget \
+        less \
         gcc \
         g++ \
         make \
@@ -47,6 +48,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #install python deps
 RUN python3 -m pip --no-cache-dir install --upgrade pip
 RUN python3 -m pip --no-cache-dir install --upgrade \
-	setuptools \
+    setuptools \
     Cython 
 RUN rm /usr/bin/python ; ln -s $(which python3) /usr/bin/python

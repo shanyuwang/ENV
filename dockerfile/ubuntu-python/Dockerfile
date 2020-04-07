@@ -39,6 +39,15 @@ RUN python3 -m pip --no-cache-dir install --upgrade \
     jupyter_nbextensions_configurator \
     jupyter_contrib_nbextensions \
     ipykernel 
+
 #for pytorch
 RUN python3 -m pip --no-cache-dir install --upgrade torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 
+#for jupyter,password=notebook
+ARG jupyter_password="sha1:a077f3f98e9b:c5c8fff0cfca7d3a74d08a37558f5e0c3f4757d2"
+RUN jupyter nbextensions_configurator enable --sys-prefix \
+		&& jupyter contrib nbextension install --sys-prefix \
+		&& jupyter notebook --generate-config \
+		&& echo "c.NotebookApp.password = u\"${jupyter_password}\"" >> /root/.jupyter/jupyter_notebook_config.py
+
+#cmd: jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --port=8002 --notebook_dir=./

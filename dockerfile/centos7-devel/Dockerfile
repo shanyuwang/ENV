@@ -17,6 +17,7 @@ RUN yum -y install -y\
         unzip \
         wget \
         which \
+        less \
         gcc \
         gcc-c++ \
         make \
