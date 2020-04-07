@@ -38,6 +38,10 @@ RUN yum -y install -y\
         glib2-devel \
         glibc-devel \
         gtest-devel \
+        python3 \
+        python3-devel \
+        python3-pip \
+        python3-setuptools \
     && yum clean all
 #for cmake3 -> cmake
 RUN alternatives --install /usr/local/bin/cmake cmake /usr/bin/cmake3 20 \

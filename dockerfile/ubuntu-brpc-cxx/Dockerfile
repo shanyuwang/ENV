@@ -14,7 +14,7 @@ RUN git clone -b ${BRPC_RELEASE_TAG} https://github.com/shanyuwang/incubator-brp
     cd brpc && \
     git submodule update --init --recursive &&\
     echo "--- compile brpc ---" && \
-    sh config_brpc.sh --headers=/usr/include --libs=/usr/lib64 && \
+    sh config_brpc.sh --headers=/usr/include --libs=/usr/lib && \
     make  && \
     echo "--- output ---" && \
     cp -r output /brpc && \
