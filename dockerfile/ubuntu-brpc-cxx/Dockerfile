@@ -1,6 +1,6 @@
 ################# stage 1:build ###########
-#docker build -t sammywang/brpc-cxx:centos7 .
-FROM sammywang/centos7-devel:latest AS builder
+#docker build -t sammywang/brpc-cxx:ubuntu .
+FROM sammywang/ubuntu-devel:latest AS builder
 
 ######################
 # Build grpc
