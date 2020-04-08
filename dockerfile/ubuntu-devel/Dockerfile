@@ -50,4 +50,4 @@ RUN python3 -m pip --no-cache-dir install --upgrade pip
 RUN python3 -m pip --no-cache-dir install --upgrade \
     setuptools \
     Cython 
-RUN rm /usr/bin/python ; ln -s $(which python3) /usr/bin/python
+RUN rm -f /usr/bin/python ; ln -s $(which python3) /usr/bin/python

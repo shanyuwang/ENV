@@ -15,7 +15,7 @@ RUN python3 -m pip --no-cache-dir install --upgrade \
     h5py \
     keras_preprocessing \
     matplotlib \
-    numpy==1.16 \
+    numpy \
     scipy \
     sklearn \
     pandas \

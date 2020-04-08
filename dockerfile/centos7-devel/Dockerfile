@@ -50,5 +50,12 @@ RUN alternatives --install /usr/local/bin/cmake cmake /usr/bin/cmake3 20 \
     --slave /usr/local/bin/cpack cpack /usr/bin/cpack3 \
     --slave /usr/local/bin/ccmake ccmake /usr/bin/ccmake3 \
     --family cmake
+
+#install python deps
+RUN python3 -m pip --no-cache-dir install --upgrade pip
+RUN python3 -m pip --no-cache-dir install --upgrade \
+    setuptools \
+    Cython
+RUN rm -f /usr/bin/python ; ln -s $(which python3) /usr/bin/python
 #RUN yum -y install yum-utils && yum clean all
 #RUN yum -y groupinstall development && yum clean all
