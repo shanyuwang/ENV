@@ -56,6 +56,5 @@ RUN python3 -m pip --no-cache-dir install --upgrade pip
 RUN python3 -m pip --no-cache-dir install --upgrade \
     setuptools \
     Cython
-RUN rm -f /usr/bin/python ; ln -s $(which python3) /usr/bin/python
-#RUN yum -y install yum-utils && yum clean all
-#RUN yum -y groupinstall development && yum clean all
+RUN ln -s $(which python3) /usr/local/bin/python
+

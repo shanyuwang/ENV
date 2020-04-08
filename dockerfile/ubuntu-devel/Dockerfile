@@ -49,5 +49,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python3 -m pip --no-cache-dir install --upgrade pip
 RUN python3 -m pip --no-cache-dir install --upgrade \
     setuptools \
-    Cython 
-RUN rm -f /usr/bin/python ; ln -s $(which python3) /usr/bin/python
+    Cython
+RUN ln -s $(which python3) /usr/local/bin/python
+
