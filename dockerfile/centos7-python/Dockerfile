@@ -3,9 +3,10 @@
 FROM sammywang/centos7-devel:latest AS builder
 
 # install deps
-RUN yum -y update && yum -y install -y\
+RUN yum -y install -y\
         graphviz \
-	&& yum clean all
+        nodejs \
+    && yum clean all
 
 #install python deps
 RUN python3 -m pip --no-cache-dir install --upgrade \
@@ -44,8 +45,9 @@ RUN python3 -m pip --no-cache-dir install --upgrade torch==1.4.0+cpu torchvision
 #for jupyter,password=notebook
 ARG jupyter_password="sha1:a077f3f98e9b:c5c8fff0cfca7d3a74d08a37558f5e0c3f4757d2"
 RUN jupyter nbextensions_configurator enable --sys-prefix \
-		&& jupyter contrib nbextension install --sys-prefix \
-		&& jupyter notebook --generate-config \
-		&& echo "c.NotebookApp.password = u\"${jupyter_password}\"" >> /root/.jupyter/jupyter_notebook_config.py
+        && jupyter contrib nbextension install --sys-prefix \
+        && jupyter notebook --generate-config \
+        && echo "c.NotebookApp.password = u\"${jupyter_password}\"" >> /root/.jupyter/jupyter_notebook_config.py
+        && echo -e '#!/bin/bash\njupyter notebook --ip 0.0.0.0 --no-browser --allow-root --port=8080 --notebook-dir=./' > /root/start_jupyter.sh \
+        && chmod +x /root/start_jupyter.sh
 
-#cmd: jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --port=8002 --notebook_dir=./
