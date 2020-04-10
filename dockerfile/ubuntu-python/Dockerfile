@@ -49,7 +49,7 @@ ARG jupyter_password="sha1:a077f3f98e9b:c5c8fff0cfca7d3a74d08a37558f5e0c3f4757d2
 RUN jupyter nbextensions_configurator enable --sys-prefix \
         && jupyter contrib nbextension install --sys-prefix \
         && jupyter notebook --generate-config \
-        && echo "c.NotebookApp.password = u\"${jupyter_password}\"" >> /root/.jupyter/jupyter_notebook_config.py
+        && echo "c.NotebookApp.password = u\"${jupyter_password}\"" >> /root/.jupyter/jupyter_notebook_config.py \
         && echo -e '#!/bin/bash\njupyter notebook --ip 0.0.0.0 --no-browser --allow-root --port=8080 --notebook-dir=./' > /root/start_jupyter.sh \
         && chmod +x /root/start_jupyter.sh
 
