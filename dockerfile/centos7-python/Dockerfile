@@ -28,6 +28,7 @@ RUN python3 -m pip --no-cache-dir install --upgrade \
     paddlepaddle-tiny \
     opencv-python \
     tensorflow \
+    faiss-cpu \
     annoy \
     hnswlib \
     Jupyter \
@@ -37,7 +38,8 @@ RUN python3 -m pip --no-cache-dir install --upgrade \
     fastprogress \
     jupyter_nbextensions_configurator \
     jupyter_contrib_nbextensions \
-    ipykernel 
+    ipykernel \
+    flask
 
 #for pytorch
 RUN python3 -m pip --no-cache-dir install --upgrade torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
@@ -48,6 +50,6 @@ RUN jupyter nbextensions_configurator enable --sys-prefix \
         && jupyter contrib nbextension install --sys-prefix \
         && jupyter notebook --generate-config \
         && echo "c.NotebookApp.password = u\"${jupyter_password}\"" >> /root/.jupyter/jupyter_notebook_config.py \
-        && echo -e '#!/bin/bash\njupyter notebook --ip 0.0.0.0 --no-browser --allow-root --port=8080 --notebook-dir=./' > /root/start_jupyter.sh \
+        && echo -e '#!/bin/bash\njupyter notebook --ip 0.0.0.0 --no-browser --allow-root --port=8080 --notebook-dir=./ $*' > /root/start_jupyter.sh \
         && chmod +x /root/start_jupyter.sh
 
